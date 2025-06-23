@@ -93,7 +93,6 @@ let progressSaveInterval = null; // 定期保存进度的计时器
 let currentVideoUrl = ''; // 记录当前实际的视频URL
 const isWebkit = (typeof window.webkitConvertPointFromNodeToPage === 'function')
 Artplayer.FULLSCREEN_WEB_IN_BODY = true;
-
 // 页面加载
 document.addEventListener('DOMContentLoaded', function () {
     // 先检查用户是否已通过密码验证
@@ -633,6 +632,7 @@ function initPlayer(videoUrl) {
         if (window.plus && plus.screen && plus.screen.lockOrientation) {
             plus.screen.lockOrientation('landscape');
         }
+        window.parent.postMessage({type: 'fullscreen', value: 'enter'}, '*');
     });
 
     art.on('fullscreenWeb:exit', () => {
@@ -655,6 +655,7 @@ function initPlayer(videoUrl) {
         if (window.plus && plus.screen && plus.screen.lockOrientation) {
             plus.screen.lockOrientation('portrait');
         }
+        window.parent.postMessage({type: 'fullscreen', value: 'exit'}, '*');
     });
 
     // 处理鼠标离开浏览器窗口
