@@ -596,11 +596,11 @@ function resetSearchArea() {
     try {
         window.history.pushState(
             {},
-            `GKTV - 免费在线视频搜索与观看平台`,
+            `LibreTV - 免费在线视频搜索与观看平台`,
             `/`
         );
         // 更新页面标题
-        document.title = `GKTV - 免费在线视频搜索与观看平台`;
+        document.title = `LibreTV - 免费在线视频搜索与观看平台`;
     } catch (e) {
         console.error('更新浏览器历史失败:', e);
     }
@@ -710,11 +710,11 @@ async function search() {
             // 使用HTML5 History API更新URL，不刷新页面
             window.history.pushState(
                 { search: query },
-                `搜索: ${query} - GKTV`,
+                `搜索: ${query} - LibreTV`,
                 `/s=${encodedQuery}`
             );
             // 更新页面标题
-            document.title = `搜索: ${query} - GKTV`;
+            document.title = `搜索: ${query} - LibreTV`;
         } catch (e) {
             console.error('更新浏览器历史失败:', e);
             // 如果更新URL失败，继续执行搜索
