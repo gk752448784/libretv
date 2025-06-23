@@ -625,6 +625,10 @@ function initPlayer(videoUrl) {
         // 初始状态
         isMouseOverPlayer = true;
         resetHideTimer();
+        // 新增：进入网页全屏时自动横屏（移动端有效）
+        if (window.screen.orientation && window.screen.orientation.lock) {
+            window.screen.orientation.lock('landscape').catch(() => {});
+        }
     });
 
     art.on('fullscreenWeb:exit', () => {
@@ -639,6 +643,10 @@ function initPlayer(videoUrl) {
         // 清除定时器并显示控件
         clearTimeout(hideTimer);
         showControls();
+        // 新增：退出网页全屏时恢复竖屏（移动端有效）
+        if (window.screen.orientation && window.screen.orientation.lock) {
+            window.screen.orientation.lock('portrait').catch(() => {});
+        }
     });
 
     // 处理鼠标离开浏览器窗口
