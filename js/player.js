@@ -629,6 +629,10 @@ function initPlayer(videoUrl) {
         if (window.screen.orientation && window.screen.orientation.lock) {
             window.screen.orientation.lock('landscape').catch(() => {});
         }
+        // 兼容uni-app外壳App横屏
+        if (window.plus && plus.screen && plus.screen.lockOrientation) {
+            plus.screen.lockOrientation('landscape');
+        }
     });
 
     art.on('fullscreenWeb:exit', () => {
@@ -646,6 +650,10 @@ function initPlayer(videoUrl) {
         // 新增：退出网页全屏时恢复竖屏（移动端有效）
         if (window.screen.orientation && window.screen.orientation.lock) {
             window.screen.orientation.lock('portrait').catch(() => {});
+        }
+        // 兼容uni-app外壳App竖屏
+        if (window.plus && plus.screen && plus.screen.lockOrientation) {
+            plus.screen.lockOrientation('portrait');
         }
     });
 
